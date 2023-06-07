@@ -1,5 +1,5 @@
 import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'
-import { htmlSelector,genreOptions, authorOptions, applyTheme,updateListItems } from './functions.js';
+import { htmlSelector,genreOptions, authorOptions, applyTheme,updateListItems,showMoreBtnStart } from './functions.js';
 
 
 
@@ -7,13 +7,10 @@ let page = 1;
 let matches = books
 
 
-// htmlSelector.listButton.innerText = `Show more (${books.length - BOOKS_PER_PAGE})`
-// htmlSelector.listButton.disabled = (matches.length - (page * BOOKS_PER_PAGE)) < 1
+htmlSelector.listButton.innerText = `Show more (${books.length - BOOKS_PER_PAGE})`
+page ++;
 
-// htmlSelector.listButton.innerHTML = `
-//     <span>Show more</span>
-//     <span class="list__remaining"> (${(matches.length - (page * BOOKS_PER_PAGE)) > 0 ? (matches.length - (page * BOOKS_PER_PAGE)) : 0})</span>`
-
+// showMoreBtnStart()
 
 const bookPreviews = (books) => {
     const starting = document.createDocumentFragment();
@@ -121,15 +118,6 @@ htmlSelector.searchForm.addEventListener('submit', (event) => {
     
     updateListItems(result);
       
-
-  
-    // htmlSelector.listButton.disabled = (matches.length - (page * BOOKS_PER_PAGE)) < 1
-
-    htmlSelector.listButton.innerHTML = `
-        <span>Show more</span>
-        <span class="list__remaining"> (${(matches.length - (page * BOOKS_PER_PAGE)) > 0 ? (matches.length - (page * BOOKS_PER_PAGE)) : 0})</span>
-    `
-
     window.scrollTo({top: 0, behavior: 'smooth'});
     htmlSelector.searchOverlay.open = false
 })
@@ -158,6 +146,12 @@ htmlSelector.listButton.addEventListener('click', () => {
 
         fragment.appendChild(element)
     }
+
+    htmlSelector.listButton.disabled = (matches.length - (page * BOOKS_PER_PAGE)) < 1
+
+    htmlSelector.listButton.innerHTML = `
+    <span>Show more</span>
+    <span class="list__remaining"> (${(matches.length - (page * BOOKS_PER_PAGE)) > 0 ? (matches.length - (page * BOOKS_PER_PAGE)) : 0})</span>`
 
     htmlSelector.listItems.appendChild(fragment)
    

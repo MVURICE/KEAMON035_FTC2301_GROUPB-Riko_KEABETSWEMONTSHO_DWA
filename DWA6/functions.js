@@ -102,13 +102,12 @@ export const updateListItems = (result) => {
   
     htmlSelector.listItems.appendChild(newItems);
 
-    const remainingBooks = Math.max(result.length - (page * BOOKS_PER_PAGE), 0);
-  htmlSelector.listButton.innerHTML = `
-    <span>Show more</span>
-    <span class="list__remaining"> (${remainingBooks})</span>
-  `;
-
-  // Enable or disable the list button based on the remaining books
-  htmlSelector.listButton.disabled = remainingBooks < 1;
+   
   }
   
+  export const showMoreBtnStart =()=>{
+
+    htmlSelector.listButton.innerText = `Show more (${books.length - BOOKS_PER_PAGE})`
+    page ++;
+
+  }

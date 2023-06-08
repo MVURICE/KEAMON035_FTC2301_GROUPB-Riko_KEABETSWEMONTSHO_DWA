@@ -52,6 +52,8 @@ const handleSearchCancelClick = () => {
   };
   
 
+
+
 const handleSettingsFormSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -68,28 +70,51 @@ const handleSettingsFormSubmit = (event) => {
     htmlSelector.settingsOverlay.open = false;
   };
   
+
+
+
+const filters = {
+    title: {
+      apply: (book, value) => {
+        return value.trim() === '' || book.title.toLowerCase().includes(value.toLowerCase());
+      },
+    },
+    author: {
+      apply: (book, value) => {
+        return value === 'any' || book.author === value;
+      },
+    },
+    genre: {
+      apply: (book, value) => {
+        return value === 'any' || book.genres.includes(value);
+      },
+    },
+  };
+
+
   
+//7   The handleSearchFormSubmit function now uses the filters object to apply the filtering logic for each filter defined in the form. It iterates over the form values and checks if each filter matches the corresponding book.
+
+//7   If  more filters needed to be added, you can simply add them to the filters object without modifying the existing code. Each filter should have an apply method that defines the filtering behavior.
+
+
 const handleSearchFormSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const filters = Object.fromEntries(formData);
+    const formValues = Object.fromEntries(formData);
     const result = [];
   
     for (const book of books) {
-      let genreMatch = filters.genre === 'any';
+      let match = true;
   
-      for (const singleGenre of book.genres) {
-        if (genreMatch) break;
-        if (singleGenre === filters.genre) {
-          genreMatch = true;
+      for (const [filterName, filterValue] of Object.entries(formValues)) {
+        if (filters[filterName] && !filters[filterName].apply(book, filterValue)) {
+          match = false;
+          break;
         }
       }
   
-      if (
-        (filters.title.trim() === '' || book.title.toLowerCase().includes(filters.title.toLowerCase())) &&
-        (filters.author === 'any' || book.author === filters.author) &&
-        genreMatch
-      ) {
+      if (match) {
         result.push(book);
       }
     }
@@ -107,7 +132,7 @@ const handleSearchFormSubmit = (event) => {
   
     window.scrollTo({ top: 0, behavior: 'smooth' });
     htmlSelector.searchOverlay.open = false;
-  };
+};
   
 
 

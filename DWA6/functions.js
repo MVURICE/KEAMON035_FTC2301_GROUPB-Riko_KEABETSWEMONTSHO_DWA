@@ -84,27 +84,42 @@ export const authorOptions = (authors) => {
   
 
 
+export const themes = {
+    day: {
+      colorDark: '10, 10, 20',
+      colorLight: '255, 255, 255',
+    },
+    night: {
+      colorDark: '255, 255, 255',
+      colorLight: '10, 10, 20',
+    },
 
-
-
-/**
- * Apply the theme based on the user's preference or default theme.
- */
-export const applyTheme = () => {
-    
-    const prefersDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = prefersDarkTheme ? 'night' : 'day';
-    document.querySelector('[data-settings-theme]').value = theme;
-  
-    if (theme === 'night') {
-      document.documentElement.style.setProperty('--color-dark', '255, 255, 255');
-      document.documentElement.style.setProperty('--color-light', '10, 10, 20');
-    } else {
-      document.documentElement.style.setProperty('--color-dark', '10, 10, 20');
-      document.documentElement.style.setProperty('--color-light', '255, 255, 255');
-    }
 };
   
+/**
+ * Applies the selected theme to the application based on user preference or default settings.
+ */
+
+export const applyTheme = () => {
+    const prefersDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const defaultTheme = prefersDarkTheme ? 'night' : 'day';
+  
+    const themeSelectElement = document.querySelector('[data-settings-theme]');
+    themeSelectElement.value = defaultTheme;
+  
+    const applyThemeVariables = (theme) => {
+      const { colorDark, colorLight } = themes[theme];
+  
+      document.documentElement.style.setProperty('--color-dark', colorDark);
+      document.documentElement.style.setProperty('--color-light', colorLight);
+    };
+  
+    applyThemeVariables(defaultTheme);
+};
+  
+
+
+
 
 /**
  * Updates the list items container with new book preview elements based on the search result.

@@ -3,30 +3,28 @@ import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'
 
 export const htmlSelector ={
 
-    listItems : document.querySelector('[data-list-items]'),
-    searchGenres : document.querySelector('[data-search-genres]'),
-    searchAuthors : document.querySelector('[data-search-authors]'),
-    settingsTheme : document.querySelector('[data-settings-theme]'),
-    listButton : document.querySelector('[data-list-button]'),
-    searchCancel : document.querySelector('[data-search-cancel]'),
-    searchOverlay : document.querySelector('[data-search-overlay]'),
-    settingsCancel:  document.querySelector('[data-settings-cancel]'),
+    listItems      : document.querySelector('[data-list-items]'),
+    searchGenres   : document.querySelector('[data-search-genres]'),
+    searchAuthors  : document.querySelector('[data-search-authors]'),
+    settingsTheme  : document.querySelector('[data-settings-theme]'),
+    listButton     : document.querySelector('[data-list-button]'),
+    searchCancel   : document.querySelector('[data-search-cancel]'),
+    searchOverlay  : document.querySelector('[data-search-overlay]'),
+    settingsCancel :  document.querySelector('[data-settings-cancel]'),
     settingsOverlay : document.querySelector('[data-settings-overlay]'),
-    settingsForm : document.querySelector('[data-settings-form]'),
-    listClose : document.querySelector('[data-list-close]'),
-    listActive : document.querySelector('[data-list-active]'),
-    headerSearch :document.querySelector(`[data-header-search]`),
-    searchTitle : document.querySelector('[data-search-title]'),
-    searchForm :  document.querySelector('[data-search-form]'),
-    listMessage : document.querySelector('[data-list-message]'),
+    settingsForm   : document.querySelector('[data-settings-form]'),
+    listClose      : document.querySelector('[data-list-close]'),
+    listActive     : document.querySelector('[data-list-active]'),
+    headerSearch   : document.querySelector(`[data-header-search]`),
+    searchTitle    : document.querySelector('[data-search-title]'),
+    searchForm     : document.querySelector('[data-search-form]'),
+    listMessage    : document.querySelector('[data-list-message]'),
     headerSettings : document.querySelector("[data-header-settings]"),
-    listBlur : document.querySelector('[data-list-blur]'),
-    listImage : document.querySelector('[data-list-image]'),
-    listTitle :document.querySelector('[data-list-title]'),
-    listSubtitle : document.querySelector('[data-list-subtitle]')
+    listBlur       : document.querySelector('[data-list-blur]'),
+    listImage      : document.querySelector('[data-list-image]'),
+    listTitle      : document.querySelector('[data-list-title]'),
+    listSubtitle   : document.querySelector('[data-list-subtitle]')
     
-
-
 }
 
 /**
@@ -82,6 +80,11 @@ export const authorOptions = (authors) => {
     htmlSelector.searchAuthors.appendChild(authorsHtml);
   };
   
+  
+
+
+//7 if more themes are to vbe added , you can simply add them to the themes object without modifying the existing code. Each theme can have its own colorDark and colorLight values.
+
 
 
 export const themes = {
@@ -93,9 +96,10 @@ export const themes = {
       colorDark: '255, 255, 255',
       colorLight: '10, 10, 20',
     },
-
-};
+    // Add more themes here
+  };
   
+
 /**
  * Applies the selected theme to the application based on user preference or default settings.
  */
@@ -117,7 +121,6 @@ export const applyTheme = () => {
     applyThemeVariables(defaultTheme);
 };
   
-
 
 
 

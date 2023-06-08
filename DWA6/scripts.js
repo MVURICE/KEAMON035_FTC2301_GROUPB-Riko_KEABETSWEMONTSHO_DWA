@@ -6,7 +6,11 @@ import { htmlSelector,genreOptions, authorOptions, applyTheme,updateListItems } 
 let page = 1;
 let matches = books
 
-
+/**
+ * Generates book previews and appends them to the book list.
+ *
+ * @param {Array} books - The array of books to generate previews for.
+ */
 const bookPreviews = (books) => {
     const starting = document.createDocumentFragment();
   
@@ -53,6 +57,11 @@ const handleSearchCancelClick = () => {
   
 
 
+/**
+ * Handles the submission of the settings form.
+ *
+ * @param {Event} event - The form submission event.
+ */
 
 const handleSettingsFormSubmit = (event) => {
     event.preventDefault();
@@ -72,7 +81,9 @@ const handleSettingsFormSubmit = (event) => {
   
 
 
+//7   The handleSearchFormSubmit function now uses the filters object to apply the filtering logic for each filter defined in the form. It iterates over the form values and checks if each filter matches the corresponding book.
 
+//7   If  more filters needed to be added, you can simply add them to the filters object without modifying the existing code. Each filter should have an apply method that defines the filtering behavior.
 const filters = {
     title: {
       apply: (book, value) => {
@@ -93,11 +104,16 @@ const filters = {
 
 
   
-//7   The handleSearchFormSubmit function now uses the filters object to apply the filtering logic for each filter defined in the form. It iterates over the form values and checks if each filter matches the corresponding book.
-
-//7   If  more filters needed to be added, you can simply add them to the filters object without modifying the existing code. Each filter should have an apply method that defines the filtering behavior.
 
 
+
+
+/**
+ * Handles the form submission event for the search form.
+ * Filters the books based on the form input values and updates the book list accordingly.
+ *
+ * @param {Event} event - The form submission event.
+ */
 const handleSearchFormSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -133,9 +149,12 @@ const handleSearchFormSubmit = (event) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     htmlSelector.searchOverlay.open = false;
 };
+
   
-
-
+/**
+ * Handles the click event on the list button to load more book previews.
+ * Retrieves the next set of book previews and appends them to the list view.
+ */
 const handleListButtonClick = () => {
     const fragment = document.createDocumentFragment();
   
@@ -175,10 +194,13 @@ const handleListButtonClick = () => {
   };
   
 
-  
 
-
-
+/**
+ * Handles the click event on a list item.
+ * Retrieves the corresponding book information and displays it in the active list view.
+ *
+ * @param {Event} event - The click event object.
+ */
 const handleListItemClick = (event) => {
     const pathArray = Array.from(event.path || event.composedPath());
     let active = null;

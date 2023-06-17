@@ -96,7 +96,7 @@ export const themes = {
       colorDark: '255, 255, 255',
       colorLight: '10, 10, 20',
     },
-    // Add more themes here
+
   };
   
 

@@ -142,6 +142,8 @@ option {
   width: 100%;
 }
 
+
+
 @media (min-width: 50rem) {
   .list__items {
     grid-template-columns: repeat(2, 1fr);

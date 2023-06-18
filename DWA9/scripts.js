@@ -11,27 +11,27 @@ let matches = books
  *
  * @param {Array} books - The array of books to generate previews for.
  */
-// const bookPreviews = (books) => {
-//     const starting = document.createDocumentFragment();
+const bookPreviews = (books) => {
+    const starting = document.createDocumentFragment();
   
-//     for (const { author, id, image, title } of matches.slice(0, BOOKS_PER_PAGE)) {
-//       const element = document.createElement('button');
-//       element.classList = 'preview';
-//       element.setAttribute('data-preview', id);
+    for (const { author, id, image, title } of matches.slice(0, BOOKS_PER_PAGE)) {
+      const element = document.createElement('button');
+      element.classList = 'preview';
+      element.setAttribute('data-preview', id);
   
-//       element.innerHTML = `
-//         <img class="preview__image" src="${image}" />
-//         <div class="preview__info">
-//           <h3 class="preview__title">${title}</h3>
-//           <div class="preview__author">${authors[author]}</div>
-//         </div>
-//       `;
+      element.innerHTML = `
+        <img class="preview__image" src="${image}" />
+        <div class="preview__info">
+          <h3 class="preview__title">${title}</h3>
+          <div class="preview__author">${authors[author]}</div>
+        </div>
+      `;
   
-//       starting.appendChild(element);
-//     }
+      starting.appendChild(element);
+    }
   
-//     htmlSelector.listItems.appendChild(starting);
-// }
+    htmlSelector.listItems.appendChild(starting);
+}
 
 
 class BookPreview extends HTMLElement {
@@ -218,43 +218,43 @@ const handleListButtonClick = () => {
   
 
 
-// /**
-//  * Handles the click event on a list item.
-//  * Retrieves the corresponding book information and displays it in the active list view.
-//  *
-//  * @param {Event} event - The click event object.
-//  */
-// const handleListItemClick = (event) => {
-//     const pathArray = Array.from(event.path || event.composedPath());
-//     let active = null;
+/**
+ * Handles the click event on a list item.
+ * Retrieves the corresponding book information and displays it in the active list view.
+ *
+ * @param {Event} event - The click event object.
+ */
+const handleListItemClick = (event) => {
+    const pathArray = Array.from(event.path || event.composedPath());
+    let active = null;
   
-//     for (const node of pathArray) {
-//       if (active) break;
+    for (const node of pathArray) {
+      if (active) break;
   
-//       if (node?.dataset?.preview) {
-//         let result = null;
+      if (node?.dataset?.preview) {
+        let result = null;
   
-//         for (const singleBook of books) {
-//           if (result) break;
-//           if (singleBook.id === node?.dataset?.preview) result = singleBook;
-//         }
+        for (const singleBook of books) {
+          if (result) break;
+          if (singleBook.id === node?.dataset?.preview) result = singleBook;
+        }
   
-//         active = result;
-//       }
-//     }
+        active = result;
+      }
+    }
   
-//     if (active) {
-//       htmlSelector.listActive.open = true;
-//       htmlSelector.listBlur.src = active.image;
-//       htmlSelector.listImage.src = active.image;
-//       htmlSelector.listTitle.innerText = active.title;
-//       htmlSelector.listSubtitle.innerText = `${authors[active.author]} (${new Date(
-//         active.published
-//       ).getFullYear()})`;
-//       document.querySelector('[data-list-description]').innerText =
-//         active.description;
-//     }
-//   };
+    if (active) {
+      htmlSelector.listActive.open = true;
+      htmlSelector.listBlur.src = active.image;
+      htmlSelector.listImage.src = active.image;
+      htmlSelector.listTitle.innerText = active.title;
+      htmlSelector.listSubtitle.innerText = `${authors[active.author]} (${new Date(
+        active.published
+      ).getFullYear()})`;
+      document.querySelector('[data-list-description]').innerText =
+        active.description;
+    }
+  };
   
 
 
@@ -288,12 +288,7 @@ class BookListComponent extends HTMLElement {
     }
 
     if (active) {
-      // const listActive = this.querySelector('[data-list-active]');
-      // const listBlur = this.querySelector('[data-list-blur]');
-      // const listImage = this.querySelector('[data-list-image]');
-      // const listTitle = this.querySelector('[data-list-title]');
-      // const listSubtitle = this.querySelector('[data-list-subtitle]');
-      // const listDescription = this.querySelector('[data-list-description]');
+    
 
       listActive.open = true;
       listBlur.src = active.image;

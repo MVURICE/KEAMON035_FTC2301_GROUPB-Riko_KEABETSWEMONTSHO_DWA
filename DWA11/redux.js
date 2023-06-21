@@ -44,6 +44,15 @@ const counterReducer = (state = initialState, action) => {
   }
 };
 
+
+// Retrieve references to DOM elements using data-key attributes
+const htmlSelector = {
+  digit: document.querySelector('[data-key="number"]'),
+  subtract: document.querySelector('[data-key="subtract"]'),
+  add: document.querySelector('[data-key="add"]'),
+  resetButton: document.querySelector('[data-key="reset"]'),
+};
+
 // Create the Redux store with the counter reducer
 const store = Redux.createStore(counterReducer);
 
@@ -66,13 +75,7 @@ htmlSelector.resetButton.addEventListener('click', () => {
   store.dispatch({ type: ActionTypes.RESET });
 });
 
-// Retrieve references to DOM elements using data-key attributes
-const htmlSelector = {
-  digit: document.querySelector('[data-key="number"]'),
-  subtract: document.querySelector('[data-key="subtract"]'),
-  add: document.querySelector('[data-key="add"]'),
-  resetButton: document.querySelector('[data-key="reset"]'),
-};
+
 
 // Output the initial state and subscribe to store changes
 store.subscribe(() => {

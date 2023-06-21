@@ -33,7 +33,7 @@ const bookPreviews = (books) => {
     htmlSelector.listItems.appendChild(starting);
 }
 
-
+//******************************************class**********************************
 class BookPreview extends HTMLElement {
   connectedCallback() {
     const starting = document.createDocumentFragment();
@@ -258,7 +258,7 @@ const handleListItemClick = (event) => {
   
 
 
-
+// ****************************************Class****************************************
 class BookListComponent extends HTMLElement {
   connectedCallback() {
     this.addEventListener('click', this.handleListItemClick);
@@ -328,5 +328,3 @@ const startProgram =()=>{
 
 startProgram()
 
-
-{/* <book-previews books='[{"id": 1, "title": "Book 1", "author": "Author 1", "image": "book1.jpg"}, {"id": 2, "title": "Book 2", "author": "Author 2", "image": "book2.jpg"}]'></book-previews> */}

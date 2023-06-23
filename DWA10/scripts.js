@@ -38,3 +38,7 @@ htmlSelector.add.addEventListener('click', () => {
 htmlSelector.resetButton.addEventListener('click', () => {
   htmlSelector.digit.value = 0;
 });
+
+
+
+
